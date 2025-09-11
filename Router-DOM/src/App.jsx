@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import AboutCompany from "./pages/AboutCompany";
 import AboutEmployee from "./pages/AboutEmployee";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           </Route>
           <Route path="/contact" element={<Contact />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/product-details/:id" element={<ProductDetails />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

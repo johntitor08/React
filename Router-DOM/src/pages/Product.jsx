@@ -1,18 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Product({ product }) {
   const { id, name, price } = product;
-
-  const handleBuy = () => {
-    alert(`You bought ${name} for $${price}!`);
-  };
+  const navigate = useNavigate();    
 
   return (
     <div className="product-card">
       <h3>{name}</h3>
       <div>ID: {id}</div>
       <div>Price: ${price}</div>
-      <button onClick={handleBuy}>Buy</button>
+      <button onClick={() => navigate("/product-details/" + id)}>Buy</button>
     </div>
   );
 }
