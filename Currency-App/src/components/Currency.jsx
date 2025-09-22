@@ -3,10 +3,10 @@ import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import { useState } from "react";
 
 function Currency() {
-  const { amount, setAmount } = useState(0);
-  const { fromCurrency, setFromCurrency } = useState("USD");
-  const { toCurrency, setToCurrency } = useState("TL");
-  const { result, setResult } = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [fromCurrency, setFromCurrency] = useState("USD");
+  const [toCurrency, setToCurrency] = useState("TRY");
+  const [result, setResult] = useState(0);
 
   const exchange = async () => {
     const response = await fetch(
@@ -14,7 +14,9 @@ function Currency() {
     );
     const data = await response.json();
     const rate = data.rates[toCurrency];
-    setResult(amount * rate);
+
+    const numericAmount = parseFloat(amount) || 0; // convert to number, default 0
+    setResult((numericAmount * rate).toFixed(2));
   };
 
   return (
@@ -24,12 +26,13 @@ function Currency() {
       </div>
       <div>
         <input
-          value={amount}
+          value={amount || ""}
           onChange={(e) => setAmount(e.target.value)}
           type="number"
           className="amount"
         />
         <select
+          value={fromCurrency || "USD"}
           onChange={(e) => setFromCurrency(e.target.value)}
           className="from-currency-option"
         >
@@ -39,6 +42,7 @@ function Currency() {
         </select>
         <FaRegArrowAltCircleRight className="arrow-icon" />
         <select
+          value={toCurrency}
           onChange={(e) => setToCurrency(e.target.value)}
           className="to-currency-option"
         >
@@ -46,12 +50,7 @@ function Currency() {
           <option>USD</option>
           <option>EUR</option>
         </select>
-        <input
-          value={result}
-          onChange={(e) => setResult(e.target.value)}
-          type="number"
-          className="result"
-        />
+        <input value={result || ""} readOnly type="number" className="result" />
       </div>
       <div>
         <button onClick={exchange} className="exchange-button">
