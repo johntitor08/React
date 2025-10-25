@@ -1,0 +1,150 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: none;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.App {
+  width: 90vw;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1e1e1e;
+  box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  border-radius: 10px;
+}
+
+.create-to-do {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 5px;
+  background-color: #2c2c2c;
+  box-shadow: inset 0 0 5px rgba(255,255,255,0.05);
+}
+
+.to-do-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.to-do-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #444;
+  padding: 1rem 1.2rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 5px;
+  background-color: #2a2a2a;
+  transition: box-shadow 0.2s ease;
+  color: #ddd;
+}
+
+.to-do-item:hover {
+  box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+}
+
+.to-do-item input[type="text"] {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #555;
+  border-radius: 5px;
+  outline-color: #4a90e2;
+  background-color: white;
+  color: black;
+}
+
+.to-do-item p {
+  margin: 0;
+  font-size: 1.1rem;
+  word-break: break-word;
+  flex-grow: 1;
+  text-align: left;
+  color: #e0e0e0;
+}
+
+.to-do-item > div {
+  display: flex;
+  align-items: center;
+}
+
+.edit-to-do, .remove-to-do {
+  font-size: 1.4rem;
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.edit-to-do:hover {
+  color: #4a90e2;
+}
+
+.remove-to-do:hover {
+  color: #e55353;
+}
+
+.to-do-input {
+  width: 100%;
+  max-width: 450px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #555;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline-color: #4a90e2;
+  background-color: white;
+  color: black;
+  transition: border-color 0.2s ease;
+}
+
+.to-do-input:focus {
+  border-color: #4a90e2;
+}
+
+.to-do-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.to-do-button:hover {
+  background-color: #218838;
+}

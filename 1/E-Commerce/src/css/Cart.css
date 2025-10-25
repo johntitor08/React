@@ -1,0 +1,151 @@
+.cart-container,
+.cart-popup {
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark .cart-container,
+body.dark .cart-popup {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+}
+
+.cart-popup {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 300px;
+  border-radius: 12px;
+  padding: 1rem;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+.cart-items,
+.cart-items-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+body.dark .cart-item {
+  background-color: #2a2a2a;
+}
+
+.cart-item img {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cart-info h4 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.cart-info p {
+  font-size: 0.9rem;
+  margin: 2px 0;
+}
+
+.cart-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-row button {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background-color: #646cff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.cart-row button:hover {
+  background-color: #4f56d6;
+}
+
+.cart-row span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cart-footer button {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.checkout-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.checkout-btn:hover {
+  background-color: #218838;
+}
+
+.cart-total {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .cart-container,
+  .cart-popup {
+    width: 90vw;
+    padding: 15px;
+  }
+}
