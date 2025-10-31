@@ -1,22 +1,31 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FaBasketShopping } from "react-icons/fa6";
 import { CiLight } from "react-icons/ci";
 import { FaMoon } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Cart from "./Cart";
+import { setSearchQuery } from "../redux/slices/filterSlice";
 import "../css/Header.css";
 
 function Header({ darkMode, toggleTheme }) {
   const [showCart, setShowCart] = useState(false);
   const { cartItems } = useSelector((state) => state.cart);
+  const { searchQuery } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const totalQuantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-
   const handleCartClick = () => setShowCart((prev) => !prev);
   const handleCloseCart = () => setShowCart(false);
   const goHome = () => navigate("/");
+
+  const handleSearchChange = (e) => {
+    dispatch(setSearchQuery(e.target.value));
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <header className={`navbar ${darkMode ? "dark" : ""}`}>
@@ -31,12 +40,16 @@ function Header({ darkMode, toggleTheme }) {
       </div>
 
       <div className="navbar-center">
-        <input
-          className="search-input"
-          type="text"
-          placeholder="Search..."
-          aria-label="Search products"
-        />
+        <form onSubmit={handleSearchSubmit} className="search-form">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            aria-label="Search products"
+          />
+        </form>
       </div>
 
       <div className="navbar-right">
@@ -51,15 +64,7 @@ function Header({ darkMode, toggleTheme }) {
           )}
 
           {showCart && (
-            <Cart
-              popup={true}
-              darkMode={darkMode}
-              onClose={handleCloseCart}
-              onCheckout={() => {
-                navigate("/order");
-                handleCloseCart();
-              }}
-            />
+            <Cart popup={true} darkMode={darkMode} onClose={handleCloseCart} />
           )}
         </div>
 

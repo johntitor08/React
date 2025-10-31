@@ -128,7 +128,6 @@ body.dark .cart-item {
 .cart-total {
   text-align: center;
   font-weight: bold;
-  margin-top: 8px;
 }
 
 @keyframes fadeIn {

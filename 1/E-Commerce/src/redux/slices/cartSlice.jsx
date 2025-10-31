@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems: [],
+  lastOrder: JSON.parse(localStorage.getItem("lastOrder")) || [], // initialize from localStorage
 };
 
 const cartSlice = createSlice({
@@ -34,6 +35,10 @@ const cartSlice = createSlice({
       const item = state.cartItems.find((p) => p.id === action.payload);
       if (item && item.quantity > 1) item.quantity -= 1;
     },
+    setLastOrder: (state, action) => {
+      state.lastOrder = action.payload;
+      localStorage.setItem("lastOrder", JSON.stringify(action.payload));
+    },
   },
 });
 
@@ -43,6 +48,7 @@ export const {
   clearCart,
   incrementQuantity,
   decrementQuantity,
+  setLastOrder,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -8,6 +8,13 @@ import {
 } from "../redux/slices/cartSlice";
 import "../css/Cart.css";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+
+Cart.propTypes = {
+  popup: PropTypes.bool,
+  darkMode: PropTypes.bool,
+  onClose: PropTypes.func,
+};
 
 function Cart({ popup = false, darkMode = false, onClose }) {
   const dispatch = useDispatch();
@@ -22,7 +29,6 @@ function Cart({ popup = false, darkMode = false, onClose }) {
     if (cartItems.length === 0) return;
     navigate("/order");
     if (onClose) onClose();
-    dispatch(clearCart());
   };
 
   const containerClass = popup
