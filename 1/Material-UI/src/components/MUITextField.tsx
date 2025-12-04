@@ -1,11 +1,11 @@
 import { TextField } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import InputAdornment from "@mui/material/InputAdornment";
-import "../item.css";
 
 function MUITexrField() {
   return (
     <div>
+      <h2>MUI Text Field</h2>
       <div className="item">
         <TextField label="MUI Text Field" variant="outlined" />
         <TextField label="MUI Text Field" variant="filled" />

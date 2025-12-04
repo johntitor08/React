@@ -1,10 +1,10 @@
 import { Button } from "@mui/material";
-import "../item.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 function MUIButton() {
   return (
     <div>
+      <h2>MUI Button</h2>
       <div className="item">
         <Button variant="text">Click Me</Button>
         <Button variant="contained">Click Me</Button>
