@@ -1,5 +1,6 @@
 import "./App.css";
 import MUIAccordion from "./components/MUIAccordion";
+import MUIAppBar from "./components/MUIAppBar";
 import MUIAutoComplete from "./components/MUIAutoComplete";
 import MUIButton from "./components/MUIButton";
 import MUICard from "./components/MUICard";
@@ -21,6 +22,7 @@ function App() {
       <MUIGrid />
       <MUICard />
       <MUIAccordion />
+      <MUIAppBar />
     </>
   );
 }
