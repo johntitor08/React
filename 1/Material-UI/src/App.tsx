@@ -11,7 +11,10 @@ import MUIGrid from "./components/MUIGrid";
 import MUIImageList from "./components/MUIImageList";
 import MUISelect from "./components/MUISelect";
 import MUIStack from "./components/MUIStack";
+import MUITabs from "./components/MUITabs";
 import MUITextField from "./components/MUITextField";
+import MUIDrawer from "./components/MUIDrawer";
+import MUITable from "./components/MUITable";
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
       <MUIImageList />
       <MUIDialog />
       <MUIAlert />
+      <MUITabs />
+      <MUIDrawer />
+      <MUITable />
     </>
   );
 }
