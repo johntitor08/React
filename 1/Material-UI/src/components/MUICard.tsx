@@ -57,8 +57,8 @@ export default function RecipeReviewCard() {
         />
         <CardMedia
           component="img"
-          height="194"
-          image="/static/images/cards/paella.jpg"
+          height="auto"
+          image="https://img.taste.com.au/yISYdB24/taste/2017/03/onepan-prawn-chor-paella-125252-1.jpg"
           alt="Paella dish"
         />
         <CardContent>
