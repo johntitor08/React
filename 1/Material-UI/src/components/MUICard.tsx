@@ -1,6 +1,5 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import type { Theme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -21,9 +20,9 @@ interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  return <IconButton {...props} />;
-})(({ theme, expand }: { theme: Theme; expand: boolean }) => ({
+const ExpandMore = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== "expand",
+})<ExpandMoreProps>(({ theme, expand }) => ({
   transform: expand ? "rotate(180deg)" : "rotate(0deg)",
   marginLeft: "auto",
   transition: theme.transitions.create("transform", {
