@@ -17,8 +17,8 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successful!");
       navigate("/");
-    } catch (err: unknown) {
-      if (err instanceof Error) toast.error(err.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) toast.error(error.message);
       else toast.error("Login failed");
     } finally {
       setLoading(false);
@@ -46,6 +46,7 @@ export default function Login() {
         <input
           type="email"
           placeholder="Email"
+          className="auth-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={loading}
@@ -53,24 +54,26 @@ export default function Login() {
         <input
           type="password"
           placeholder="Password"
+          className="auth-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
         />
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
+
+        <div className="button-row">
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Logging in..." : "Login"}
+          </button>
+          <button
+            type="button"
+            className="auth-btn google-btn"
+            onClick={handleGoogleLogin}
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Google"}
+          </button>
+        </div>
       </form>
-
-      <div className="divider">or</div>
-
-      <button
-        className="google-btn"
-        onClick={handleGoogleLogin}
-        disabled={loading}
-      >
-        {loading ? "Loading..." : "Login with Google"}
-      </button>
     </div>
   );
 }

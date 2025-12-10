@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -18,11 +18,22 @@ export default function Register() {
       toast.success("Account created successfully!");
       navigate("/");
     } catch (error: unknown) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else {
-        toast.error("Registration failed");
-      }
+      if (error instanceof Error) toast.error(error.message);
+      else toast.error("Registration failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignUp = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      toast.success("Signed up with Google!");
+      navigate("/");
+    } catch (err: unknown) {
+      if (err instanceof Error) toast.error(err.message);
+      else toast.error("Google signup failed");
     } finally {
       setLoading(false);
     }
@@ -48,9 +59,20 @@ export default function Register() {
           onChange={(e) => setPassword(e.target.value)}
           disabled={loading}
         />
-        <button type="submit" className="auth-btn" disabled={loading}>
-          {loading ? "Creating account..." : "Register"}
-        </button>
+
+        <div className="button-row">
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Creating account..." : "Register"}
+          </button>
+          <button
+            type="button"
+            className="auth-btn google-btn"
+            onClick={handleGoogleSignUp}
+            disabled={loading}
+          >
+            {loading ? "Loading..." : "Google"}
+          </button>
+        </div>
       </form>
     </div>
   );

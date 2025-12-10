@@ -2,9 +2,10 @@ body {
   margin: 0;
   background: #121212;
   color: white;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
 }
 
+/* Navbar */
 .navbar {
   padding: 12px 20px;
   background: #1e1e1e;
@@ -28,6 +29,7 @@ body {
 }
 
 .navbar-item {
+  margin: auto;
   text-decoration: none;
   color: white;
   transition: 0.2s;
@@ -35,7 +37,6 @@ body {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  margin: auto;
 }
 
 .navbar-item:hover {
@@ -75,6 +76,7 @@ body {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Avatar */
 .avatar-container {
   position: relative;
 }
@@ -130,6 +132,7 @@ body {
   background: #3a3a3a;
 }
 
+/* Navbar responsive */
 @media (max-width: 768px) {
   .navbar-menu {
     position: absolute;
@@ -153,21 +156,22 @@ body {
   }
 }
 
+/* Auth container */
 .auth-container {
   width: 100%;
   height: 100vh;
-  background: #f4f4f4;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Form box */
 .auth-box {
   width: 380px;
-  background: white;
+  background: #1e1e1e;
   padding: 32px;
   border-radius: 16px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -177,57 +181,58 @@ body {
   text-align: center;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #1e1e1e;
+  color: #4caf50;
 }
 
+/* Input fields */
 .auth-input {
   padding: 12px 14px;
   font-size: 15px;
-  border: 1.5px solid #ccc;
+  border: 1.5px solid #444;
   border-radius: 10px;
+  background: #2a2a2a;
+  color: #fff;
   transition: 0.2s;
 }
 
 .auth-input:focus {
-  border-color: #5b8bff;
+  border-color: #4caf50;
   outline: none;
 }
 
+/* Button row for submit and Google */
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 .auth-btn {
-  background: #4e73ff;
-  border: none;
+  flex: 1;
   padding: 12px;
   font-size: 16px;
   border-radius: 10px;
-  color: white;
-  cursor: pointer;
   font-weight: 600;
+  cursor: pointer;
+  border: none;
   transition: 0.2s;
+  color: #fff;
+  background-color: #4e73ff;
 }
 
 .auth-btn:hover {
-  background: #264dff;
+  background-color: #264dff;
 }
 
-.auth-link {
-  font-size: 14px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  gap: 6px;
-  color: #555;
+.google-btn {
+  background-color: #4285f4;
 }
 
-.auth-link a {
-  color: #4e73ff;
-  text-decoration: none;
-  font-weight: 600;
+.google-btn:hover {
+  background-color: #357ae8;
 }
 
-.auth-link a:hover {
-  text-decoration: underline;
-}
-
+/* Settings */
 .settings-container {
   max-width: 400px;
   margin: 50px auto;
@@ -248,7 +253,7 @@ body {
 .settings-container input[type="text"],
 .settings-container input[type="email"],
 .settings-container input[type="password"] {
-  width: 370px;
+  width: 100%;
   padding: 12px 15px;
   margin-bottom: 20px;
   border-radius: 8px;
@@ -288,32 +293,13 @@ body {
   font-weight: bold;
 }
 
+/* Responsive */
 @media (max-width: 500px) {
-  .settings-container {
+
+  .settings-container,
+  .auth-box {
+    width: 90%;
     padding: 20px;
-    margin: 30px 15px;
+    margin: 30px auto;
   }
-}
-
-.google-btn {
-  width: 100%;
-  padding: 12px;
-  background-color: #4285f4;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: 0.3s;
-}
-
-.google-btn:hover {
-  background-color: #357ae8;
-}
-
-.divider {
-  text-align: center;
-  margin: 15px 0;
-  color: #aaa;
 }
