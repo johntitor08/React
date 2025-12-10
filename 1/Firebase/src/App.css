@@ -227,3 +227,70 @@ body {
 .auth-link a:hover {
   text-decoration: underline;
 }
+
+.settings-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+}
+
+.settings-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #4caf50;
+}
+
+.settings-container input[type="text"],
+.settings-container input[type="email"],
+.settings-container input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.settings-container input:focus {
+  box-shadow: 0 0 0 2px #4caf50;
+}
+
+.settings-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.settings-container button:hover {
+  background-color: #45a047;
+}
+
+.settings-container button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.settings-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .settings-container {
+    padding: 20px;
+    margin: 30px 15px;
+  }
+}

@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { auth } from "../firebase";
-import { updateProfile } from "firebase/auth";
+import { updateProfile, type User } from "firebase/auth";
+import toast from "react-hot-toast";
+import "../App.css";
 
 export default function Settings() {
-  const [user, setUser] = useState(auth.currentUser);
+  const [user, setUser] = useState<User | null>(auth.currentUser);
   const [displayName, setDisplayName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -19,31 +22,33 @@ export default function Settings() {
   }
 
   const handleUpdateProfile = async () => {
-    if (user) {
-      try {
-        await updateProfile(user, { displayName });
-        alert("Profile updated!");
-      } catch (err) {
-        console.error(err);
-        alert("Update failed");
-      }
+    if (!user) return;
+    setLoading(true);
+    try {
+      await updateProfile(user, { displayName });
+      toast.success("Profile updated!");
+    } catch (err: unknown) {
+      console.error(err);
+      if (err instanceof Error) toast.error(err.message);
+      else toast.error("Update failed");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: "40px" }}>
+    <div className="settings-container">
       <h1>Settings</h1>
-      <div style={{ marginBottom: "15px" }}>
-        <label>
-          Display Name:{" "}
-          <input
-            type="text"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-          />
-        </label>
-      </div>
-      <button onClick={handleUpdateProfile}>Update Profile</button>
+      <label>Display Name</label>
+      <input
+        type="text"
+        value={displayName}
+        onChange={(e) => setDisplayName(e.target.value)}
+        disabled={loading}
+      />
+      <button onClick={handleUpdateProfile} disabled={loading}>
+        {loading ? "Updating..." : "Update Profile"}
+      </button>
     </div>
   );
 }

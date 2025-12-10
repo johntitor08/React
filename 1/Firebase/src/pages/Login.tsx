@@ -2,20 +2,29 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Login successful!");
       navigate("/");
-    } catch (error) {
-      console.error(error);
-      alert("Login failed");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Login failed");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -29,6 +38,7 @@ export default function Login() {
           className="auth-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          disabled={loading}
         />
         <input
           type="password"
@@ -36,9 +46,10 @@ export default function Login() {
           className="auth-input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          disabled={loading}
         />
-        <button type="submit" className="auth-btn">
-          Login
+        <button type="submit" className="auth-btn" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
     </div>

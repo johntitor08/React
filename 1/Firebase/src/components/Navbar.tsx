@@ -1,17 +1,16 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import {
-  onAuthStateChanged,
-  signOut,
-  type User as FirebaseUser,
-} from "firebase/auth";
+import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { auth } from "../firebase";
+import toast from "react-hot-toast";
 import "../App.css";
+import Avatar from "../assets/225-default-avatar.svg";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [loadingLogout, setLoadingLogout] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,15 +21,27 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = async () => {
-    await signOut(auth);
-    setMenuOpen(false);
-    navigate("/login");
+    setLoadingLogout(true);
+    try {
+      await signOut(auth);
+      toast.success("Logout successful!");
+      navigate("/login");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Logout failed");
+      }
+    } finally {
+      setLoadingLogout(false);
+      setMenuOpen(false);
+    }
   };
 
   return (
     <nav className="navbar">
       <Link to="/" className="navbar-logo">
-        Firebase
+        Firebase Auth App
       </Link>
 
       <button className="navbar-toggle" onClick={() => setOpen(!open)}>
@@ -72,7 +83,7 @@ export default function Navbar() {
         {user && (
           <div className="avatar-container">
             <img
-              src={user.photoURL || "/default-avatar.png"}
+              src={user.photoURL || Avatar}
               alt="avatar"
               className="avatar"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -96,8 +107,9 @@ export default function Navbar() {
                 <button
                   className="avatar-menu-item logout-btn"
                   onClick={handleLogout}
+                  disabled={loadingLogout}
                 >
-                  Logout
+                  {loadingLogout ? "Logging out..." : "Logout"}
                 </button>
               </div>
             )}
