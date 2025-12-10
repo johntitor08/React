@@ -294,3 +294,26 @@ body {
     margin: 30px 15px;
   }
 }
+
+.google-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.google-btn:hover {
+  background-color: #357ae8;
+}
+
+.divider {
+  text-align: center;
+  margin: 15px 0;
+  color: #aaa;
+}
