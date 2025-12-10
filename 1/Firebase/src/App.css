@@ -253,7 +253,7 @@ body {
 .settings-container input[type="text"],
 .settings-container input[type="email"],
 .settings-container input[type="password"] {
-  width: 100%;
+  width: 370px;
   padding: 12px 15px;
   margin-bottom: 20px;
   border-radius: 8px;
